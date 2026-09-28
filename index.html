@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>나의 아침 브리핑 · 2026.09.17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EFEDE3;
+    --paper-card: #FBFAF5;
+    --paper-card-2: #F4F2E9;
+    --ink: #23262B;
+    --ink-soft: #5B5F66;
+    --ink-faint: #8B8E93;
+    --hairline: rgba(35,38,43,0.13);
+    --accent: #1F6F63;
+    --accent-soft: #E1EBE8;
+    --accent-indigo: #3A4A7A;
+    --hero-1: #1E2749;
+    --hero-2: #7C4A6B;
+    --hero-3: #E8A94A;
+    --hero-4: #F6D98B;
+    --hero-ink: #FBF7EE;
+    --hero-ink-soft: rgba(251,247,238,0.78);
+    --shadow: 0 1px 2px rgba(35,38,43,0.05), 0 8px 24px rgba(35,38,43,0.07);
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #15171B;
+      --paper-card: #1D2024;
+      --paper-card-2: #22262B;
+      --ink: #ECEAE3;
+      --ink-soft: #ABAFB6;
+      --ink-faint: #797D84;
+      --hairline: rgba(236,234,227,0.13);
+      --accent: #58C4B3;
+      --accent-soft: rgba(88,196,179,0.14);
+      --accent-indigo: #8C9EE0;
+      --hero-ink: #FBF7EE;
+      --hero-ink-soft: rgba(251,247,238,0.78);
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px rgba(0,0,0,0.35);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #15171B;
+    --paper-card: #1D2024;
+    --paper-card-2: #22262B;
+    --ink: #ECEAE3;
+    --ink-soft: #ABAFB6;
+    --ink-faint: #797D84;
+    --hairline: rgba(236,234,227,0.13);
+    --accent: #58C4B3;
+    --accent-soft: rgba(88,196,179,0.14);
+    --accent-indigo: #8C9EE0;
+    --hero-ink: #FBF7EE;
+    --hero-ink-soft: rgba(251,247,238,0.78);
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px rgba(0,0,0,0.35);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  h1, h2, h3 { font-family: "Gowun Batang", "Noto Serif KR", serif; margin: 0; }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(125deg, var(--hero-1) 0%, var(--hero-2) 42%, var(--hero-3) 74%, var(--hero-4) 100%);
+    padding: 3rem 1.5rem 3.4rem;
+    color: var(--hero-ink);
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 60%;
+    padding-bottom: 60%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,244,214,0.55) 0%, rgba(255,244,214,0) 68%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: rise 0.7s ease-out 0.05s forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-inner { opacity: 1; transform: none; animation: none; }
+  }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+  .eyebrow {
+    font-size: 0.85rem;
+    color: var(--hero-ink-soft);
+    margin-bottom: 0.9rem;
+  }
+  .hero-date {
+    font-size: clamp(1.7rem, 4.4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .hero-sub {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem 1rem;
+    margin-top: 0.5rem;
+    font-size: 1.02rem;
+    color: var(--hero-ink-soft);
+  }
+  .hero-clock { font-variant-numeric: tabular-nums; }
+
+  .hero-chip {
+    margin-top: 1.6rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: rgba(20,20,30,0.22);
+    border: 1px solid rgba(251,247,238,0.28);
+    padding: 0.5rem 0.95rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    backdrop-filter: blur(2px);
+  }
+  .hero-chip svg { width: 18px; height: 18px; flex: none; }
+
+  .search-row { margin-top: 1.6rem; }
+  .search-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(251,247,238,0.94);
+    border-radius: 999px;
+    padding: 0.35rem 0.4rem 0.35rem 1rem;
+    max-width: 480px;
+    box-shadow: var(--shadow);
+  }
+  .search-form svg { width: 18px; height: 18px; color: var(--ink-faint); flex: none; }
+  .search-form input {
+    border: none;
+    background: transparent;
+    outline: none;
+    flex: 1;
+    font: inherit;
+    font-size: 0.98rem;
+    color: var(--ink);
+    min-width: 0;
+  }
+  .search-form input::placeholder { color: var(--ink-faint); }
+  .search-form button {
+    border: none;
+    background: var(--hero-1);
+    color: var(--hero-ink);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .search-form button:hover { filter: brightness(1.12); }
+  .search-form:focus-within { outline: 2px solid var(--hero-4); outline-offset: 2px; }
+
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.2rem 1.5rem 4rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+  @media (min-width: 760px) {
+    main {
+      grid-template-columns: 290px minmax(0, 1fr);
+      align-items: start;
+    }
+    .aside { position: sticky; top: 1.5rem; }
+  }
+
+  .card {
+    background: var(--paper-card);
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+    padding: 1.4rem 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .aside { display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .weather-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.2rem;
+  }
+  .weather-head h2 { font-size: 1.25rem; }
+  .weather-place { font-size: 0.85rem; color: var(--ink-faint); }
+
+  .weather-sun {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.9rem 0 0.2rem;
+  }
+  .weather-sun svg { width: 46px; height: 46px; color: var(--hero-3); flex: none; }
+  .weather-temps { display: flex; align-items: baseline; gap: 0.5rem; }
+  .temp-high { font-family: "Gowun Batang", serif; font-size: 2.1rem; font-weight: 700; }
+  .temp-low { font-size: 1.1rem; color: var(--ink-faint); }
+
+  .weather-line {
+    margin-top: 0.7rem;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .weather-stats {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    border-top: 1px solid var(--hairline);
+    padding-top: 0.9rem;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--ink-faint); }
+  .stat-value { font-size: 0.95rem; font-weight: 600; margin-top: 0.15rem; }
+  .weather-note {
+    margin-top: 0.9rem;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    line-height: 1.55;
+  }
+
+  .memo-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .memo-hint { font-size: 0.76rem; color: var(--ink-faint); font-weight: 400; }
+  textarea#memo {
+    margin-top: 0.7rem;
+    width: 100%;
+    min-height: 92px;
+    resize: vertical;
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    background: var(--paper-card-2);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.92rem;
+    padding: 0.6rem 0.7rem;
+  }
+  textarea#memo:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .memo-saved { font-size: 0.76rem; color: var(--accent); margin-top: 0.4rem; min-height: 1em; }
+
+  section.news h2 { font-size: 1.4rem; }
+  .news-sub { font-size: 0.9rem; color: var(--ink-faint); margin-top: 0.35rem; }
+
+  .news-list { margin-top: 1.3rem; display: flex; flex-direction: column; gap: 1rem; }
+  .news-item {
+    background: var(--paper-card);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 1.1rem 1.3rem;
+  }
+  .news-tag {
+    display: inline-block;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.18rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.55rem;
+  }
+  .news-item h3 {
+    font-family: "IBM Plex Sans KR", sans-serif;
+    font-size: 1.03rem;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+  .news-item p {
+    margin: 0.5rem 0 0;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+  .news-source {
+    display: block;
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+
+  footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+    color: var(--ink-faint);
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+  footer .rule { border: none; border-top: 1px solid var(--hairline); margin: 0 0 1.2rem; }
+
+  :focus-visible { outline: 2px solid var(--accent-indigo); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">나의 아침 브리핑</div>
+    <div class="hero-date">2026년 9월 17일 목요일</div>
+    <div class="hero-sub">
+      <span id="greeting">오늘 하루도 좋은 일이 많길 바라요</span>
+      <span class="hero-clock" id="clock" aria-label="현재 시각"></span>
+    </div>
+    <div class="hero-chip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+      서울 · 최고 28° / 최저 17° · 맑음
+    </div>
+    <div class="search-row">
+      <form class="search-form" action="https://www.google.com/search" method="GET" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" name="q" placeholder="웹에서 검색" aria-label="웹 검색">
+        <button type="submit">검색</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<main>
+  <aside class="aside">
+    <div class="card">
+      <div class="weather-head">
+        <h2>오늘의 날씨</h2>
+        <span class="weather-place">서울</span>
+      </div>
+      <div class="weather-sun">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.6M12 19.4V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.6M19.4 12H22M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
+        <div class="weather-temps">
+          <span class="temp-high">28°</span>
+          <span class="temp-low">/ 17°</span>
+        </div>
+      </div>
+      <p class="weather-line">이틀 연속 구름 한 점 없는 맑은 날씨가 이어지고 있어요. 오늘도 비 소식 없이 화창하겠어요.</p>
+      <div class="weather-stats">
+        <div>
+          <div class="stat-label">강수량</div>
+          <div class="stat-value">0mm</div>
+        </div>
+        <div>
+          <div class="stat-label">체감</div>
+          <div class="stat-value">완연한 가을</div>
+        </div>
+      </div>
+      <p class="weather-note">기상청 서울 관측소 기준(9/17). 백로를 지나 추분을 앞둔 가을 날씨로, 아침저녁 기온차가 10도 이상 벌어지니 겉옷을 챙기면 좋겠어요.</p>
+    </div>
+
+    <div class="card">
+      <div class="memo-label">오늘의 메모 <span class="memo-hint">이 브라우저에만 저장</span></div>
+      <textarea id="memo" placeholder="오늘 할 일이나 생각을 적어보세요..."></textarea>
+      <div class="memo-saved" id="memoSaved" aria-live="polite"></div>
+    </div>
+  </aside>
+
+  <section class="news">
+    <h2>오늘의 주요 뉴스</h2>
+    <p class="news-sub">2026년 9월 17일 기준, 국내외 주요 보도를 간추렸어요.</p>
+
+    <div class="news-list">
+      <article class="news-item">
+        <span class="news-tag">경제</span>
+        <h3>미 연준 금리 인상에 정부 긴급 거시금융회의 소집</h3>
+        <p>미국 연방준비제도가 이번 주 기준금리를 올리기로 결정하자, 한국 정부는 17일 아침 관계기관 합동으로 거시경제금융회의를 열어 국내 금융·외환시장에 미치는 영향을 점검했습니다. 중동 정세에 따른 변수도 함께 논의됐습니다.</p>
+        <span class="news-source">기획재정부</span>
+      </article>
+
+      <article class="news-item">
+        <span class="news-tag">국제</span>
+        <h3>트럼프 "미국 금리, 1% 이하로 낮춰야"</h3>
+        <p>도널드 트럼프 미국 대통령이 연준의 이번 금리 인상 결정에 불만을 나타내며, 미국의 기준금리가 1% 또는 그 아래 수준이어야 한다고 주장했습니다.</p>
+        <span class="news-source">뉴스핌</span>
+      </article>
+
+      <article class="news-item">
+        <span class="news-tag">안보</span>
+        <h3>김여정 "북한 핵보유국 지위는 되돌릴 수 없다"</h3>
+        <p>김여정 북한 노동당 부부장이 담화를 내고, 북한의 핵보유국 지위가 절대적이며 되돌릴 수 없다는 기존 입장을 다시 한번 강조했습니다.</p>
+        <span class="news-source">뉴스핌 속보</span>
+      </article>
+
+      <article class="news-item">
+        <span class="news-tag">국제</span>
+        <h3>미 재무부, 이란 압박 위해 금융기관 소집</h3>
+        <p>미국 재무부가 이란에 대한 경제적 고립 조치를 강화하기 위해 주요 금융기관 관계자들을 불러모은 것으로 전해졌습니다.</p>
+        <span class="news-source">뉴스핌</span>
+      </article>
+
+      <article class="news-item">
+        <span class="news-tag">기업</span>
+        <h3>애플, AI 시대 겨냥한 기업용 서버 개발 추진</h3>
+        <p>애플이 인공지능 시대에 대응할 기업용 서버 개발을 추진하고 있으며, 이 과정에서 엔비디아와도 협력을 논의하고 있는 것으로 알려졌습니다.</p>
+        <span class="news-source">미 증시 특징주 소식</span>
+      </article>
+
+      <article class="news-item">
+        <span class="news-tag">국제</span>
+        <h3>시리아 신정부, 대테러법원 공식 폐지</h3>
+        <p>시리아 신정부 의회가 옛 아사드 정권 시절 설립된 대테러법원을 공식 폐지하고 기존 판결을 무효화하는 안건을 통과시켰습니다. 신정부 출범 이후 첫 주요 입법 조치 중 하나로 평가됩니다.</p>
+        <span class="news-source">해외 뉴스 요약</span>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <hr class="rule">
+  이 페이지는 2026년 9월 17일 기준으로 만들어진 스냅샷이에요. 날씨와 뉴스는 실시간으로 갱신되지 않으니, 최신 정보가 필요하면 Claude에게 새로고침을 요청해 주세요. 메모는 이 브라우저에만 저장되며 다른 사람에게 전달되지 않아요.
+</footer>
+
+<script>
+(function () {
+  // Live clock
+  var clockEl = document.getElementById('clock');
+  var greetingEl = document.getElementById('greeting');
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function tick() {
+    var now = new Date();
+    var h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+    if (clockEl) clockEl.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
+    var greeting;
+    if (h >= 5 && h < 11) greeting = '좋은 아침이에요';
+    else if (h >= 11 && h < 17) greeting = '활기찬 오후 보내세요';
+    else if (h >= 17 && h < 21) greeting = '편안한 저녁 되세요';
+    else greeting = '포근한 밤 되세요';
+    if (greetingEl) greetingEl.textContent = greeting;
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Memo autosave (per-browser only)
+  var memo = document.getElementById('memo');
+  var saved = document.getElementById('memoSaved');
+  var KEY = 'morning-briefing-memo';
+  var saveTimer = null;
+  try {
+    var existing = localStorage.getItem(KEY);
+    if (existing) memo.value = existing;
+  } catch (e) { /* storage unavailable; memo simply won't persist */ }
+
+  memo.addEventListener('input', function () {
+    if (saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      try {
+        localStorage.setItem(KEY, memo.value);
+        saved.textContent = '저장됨';
+        setTimeout(function () { saved.textContent = ''; }, 1500);
+      } catch (e) {
+        saved.textContent = '이 브라우저에서는 저장할 수 없어요';
+      }
+    }, 500);
+  });
+})();
+</script>
+
+</body>
+</html>
